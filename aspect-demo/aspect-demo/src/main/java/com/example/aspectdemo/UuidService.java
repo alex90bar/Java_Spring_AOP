@@ -1,5 +1,7 @@
 package com.example.aspectdemo;
 
+import com.example.aspectdemo.annotations.ArgsCatchable;
+import com.example.aspectdemo.annotations.DurationTrackable;
 import java.util.Date;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -10,6 +12,8 @@ public class UuidService {
 
 //  private Logger logger = Logger.getLogger(this.getClass().getName());
 
+  @DurationTrackable
+  @ArgsCatchable
   public UuidServiceResponse generateUuid(Double rnd) {
 
     UuidServiceResponse uuidServiceResponse = new UuidServiceResponse();

@@ -15,7 +15,8 @@ public class UuidServicesArgCatcherAspect {
 
   private Logger logger = Logger.getLogger(this.getClass().getName());
 
-  @Pointcut(value = "within(com.example.aspectdemo.*)")
+//  @Pointcut(value = "within(com.example.aspectdemo.*)")
+  @Pointcut(value = "@annotation(com.example.aspectdemo.annotations.ArgsCatchable)")
   public void uuidServicesArgCatcherPointcut(){}
 
 //  @After(value = "args(rnd) && uuidServicesArgCatcherPointcut()")

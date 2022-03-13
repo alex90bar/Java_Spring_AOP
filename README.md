@@ -10,5 +10,7 @@ AspectDemoApplication - это учебный проект на Spring Boot, с 
 
 10.5. Добавлена аннотация @Around, модифицирован response с помощью @AfterReturning, использована аннотация @AfterThrowing
 
+10.6. Добавлены кастомные аннотации.
+
 
  

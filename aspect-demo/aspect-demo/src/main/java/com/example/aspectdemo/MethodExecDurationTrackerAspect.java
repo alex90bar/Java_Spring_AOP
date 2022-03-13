@@ -32,7 +32,8 @@ public class MethodExecDurationTrackerAspect {
 //    logger.info(joinPoint.toString() + " generateUuid took: " + (durationMillis) + " mills");
 //  }
 
-  @Around(value = "execution(public UuidServiceResponse generate*(..))")
+//  @Around(value = "execution(public UuidServiceResponse generate*(..))")
+@Around(value = "@annotation(com.example.aspectdemo.annotations.DurationTrackable)")
   public Object aroundDurationTrackingAdvice(ProceedingJoinPoint proceedingJoinPoint){
     durationMillis = new Date().getTime();
     logger.info(proceedingJoinPoint.toString() + " duration tracking begins");

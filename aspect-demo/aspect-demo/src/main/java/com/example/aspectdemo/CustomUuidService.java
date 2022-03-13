@@ -1,11 +1,15 @@
 package com.example.aspectdemo;
 
+import com.example.aspectdemo.annotations.ArgsCatchable;
+import com.example.aspectdemo.annotations.DurationTrackable;
 import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CustomUuidService {
 
+  @DurationTrackable
+  @ArgsCatchable
   public UuidServiceResponse generateCustomUuid(Double rnd) throws Exception {
     if (rnd <= 0.5) {
       UuidServiceResponse uuidServiceResponse = new UuidServiceResponse();
