@@ -4,7 +4,9 @@ import java.sql.DatabaseMetaData;
 import java.util.Date;
 import java.util.logging.Logger;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -18,16 +20,33 @@ public class MethodExecDurationTrackerAspect {
   private Logger logger = Logger.getLogger(this.getClass().getName());
 
   //catches all generate* methods with any set of args
-  @Before(value = "execution(public UuidServiceResponse generate*(..))")
-  public void beforeDurationTrackingAdvice(JoinPoint joinPoint){
-    durationMillis = new Date().getTime();
-    logger.info(joinPoint.toString() + " duration tracking begins");
-  }
+//  @Before(value = "execution(public UuidServiceResponse generate*(..))")
+//  public void beforeDurationTrackingAdvice(JoinPoint joinPoint){
+//    durationMillis = new Date().getTime();
+//    logger.info(joinPoint.toString() + " duration tracking begins");
+//  }
+//
+//  @After(value = "execution(public UuidServiceResponse generate*(..))")
+//  public void afterDurationTrackingAdvice(JoinPoint joinPoint){
+//    durationMillis = new Date().getTime() - durationMillis;
+//    logger.info(joinPoint.toString() + " generateUuid took: " + (durationMillis) + " mills");
+//  }
 
-  @After(value = "execution(public UuidServiceResponse generate*(..))")
-  public void afterDurationTrackingAdvice(JoinPoint joinPoint){
+  @Around(value = "execution(public UuidServiceResponse generate*(..))")
+  public Object aroundDurationTrackingAdvice(ProceedingJoinPoint proceedingJoinPoint){
+    durationMillis = new Date().getTime();
+    logger.info(proceedingJoinPoint.toString() + " duration tracking begins");
+    Object returnValue = null;
+
+    try {
+      returnValue = proceedingJoinPoint.proceed();
+    } catch (Throwable throwable) {
+      throwable.printStackTrace();
+    }
+
     durationMillis = new Date().getTime() - durationMillis;
-    logger.info(joinPoint.toString() + " generateUuid took: " + (durationMillis) + " mills");
+    logger.info(proceedingJoinPoint.toString() + " generateUuid took: " + (durationMillis) + " mills");
+    return returnValue;
   }
 
   @Pointcut(value = "execution(* generate*()) ")

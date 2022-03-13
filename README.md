@@ -8,3 +8,7 @@ AspectDemoApplication - это учебный проект на Spring Boot, с 
 
 10.4. Добавлен JoinPoint, реализован перехват аргументов из метода.
 
+10.5. Добавлена аннотация @Around, модифицирован response с помощью @AfterReturning, использована аннотация @AfterThrowing
+
+
+ 

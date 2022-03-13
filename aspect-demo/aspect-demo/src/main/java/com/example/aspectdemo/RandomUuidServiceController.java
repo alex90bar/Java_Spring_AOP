@@ -25,7 +25,7 @@ public class RandomUuidServiceController {
   }
 
   @GetMapping("/uuid/custom")
-  public ResponseEntity<?> handleCustomUuid(){
+  public ResponseEntity<?> handleCustomUuid() throws Exception{
     return ResponseEntity.ok(customUuidService.generateCustomUuid(Math.random()));
   }
 
