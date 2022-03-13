@@ -21,12 +21,12 @@ public class RandomUuidServiceController {
 
   @GetMapping("/uuid")
   public ResponseEntity<?> handleUuid(){
-    return ResponseEntity.ok(uuidService.generateUuid());
+    return ResponseEntity.ok(uuidService.generateUuid(Math.random()));
   }
 
   @GetMapping("/uuid/custom")
   public ResponseEntity<?> handleCustomUuid(){
-    return ResponseEntity.ok(customUuidService.generateCustomUuid());
+    return ResponseEntity.ok(customUuidService.generateCustomUuid(Math.random()));
   }
 
 }

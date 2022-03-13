@@ -5,3 +5,6 @@ AspectDemoApplication - это учебный проект на Spring Boot, с 
 Добавленные фичи:
 
 10.3. Добавлены PointCut для методов, содержащих в названии "generate", и для всех методов класса RandomUuidServiceController.
+
+10.4. Добавлен JoinPoint, реализован перехват аргументов из метода.
+

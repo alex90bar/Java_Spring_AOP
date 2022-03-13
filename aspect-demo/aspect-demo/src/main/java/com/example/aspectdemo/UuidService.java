@@ -10,6 +10,20 @@ public class UuidService {
 
 //  private Logger logger = Logger.getLogger(this.getClass().getName());
 
+  public UuidServiceResponse generateUuid(Double rnd) {
+
+    UuidServiceResponse uuidServiceResponse = new UuidServiceResponse();
+    uuidServiceResponse.setUuid(UUID.randomUUID().toString());
+    //really hard work here
+    try {
+      Thread.sleep((long) (rnd * 5000));
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+    return uuidServiceResponse;
+  }
+
   public UuidServiceResponse generateUuid() {
 //    logger.info("generateUuid() begins");
 //    Date dateBegin = new Date();
